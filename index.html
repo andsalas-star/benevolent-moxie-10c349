@@ -1,148 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>benevolent-moxie-10c349</title>
-<style>
-  body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-  }
-  .container {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        padding: 40px;
-        max-width: 600px;
-        text-align: center;
-  }
-  h1 {
-        color: #333;
-        margin: 0 0 20px 0;
-  }
-  .subtitle {
-        color: #f5576c;
-        font-size: 1.2em;
-        margin-bottom: 30px;
-  }
-  .badge {
-        display: inline-block;
-        background: #f5576c;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-weight: bold;
-        margin-top: 20px;
-  }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas - Metrickal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        :root {
+            --metrickal-fuchsia: #c21473; /* El color exacto de la imagen */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff1f8;
+        }
+
+        .bg-metrickal { background-color: var(--metrickal-fuchsia); }
+        .text-metrickal { color: var(--metrickal-fuchsia); }
+        .border-metrickal { border-color: var(--metrickal-fuchsia); }
+        .ring-metrickal:focus { --tw-ring-color: var(--metrickal-fuchsia); border-color: var(--metrickal-fuchsia); }
+        
+        .result-box {
+            background-color: #fff;
+            border: 2px solid var(--metrickal-fuchsia);
+        }
+    </style>
 </head>
-  <body>
-    <div class="container">
-      <h1>🎉 benevolent-moxie-10c349</h1>
-    <p class="subtitle">Proyecto migrado desde Netlify a GitHub</p>p>
-    <p><strong>Estado:</strong> Activo</p>
-    <p><strong>Fecha:</strong> 18 de Marzo de 2026</p>
-    <span class="badge">✓ En vivo</span>span>
-    </div>div>
-  </body>
-</html>html></strong></strong></p></h1>
-  </body>
-</style></title>
-</head><!DOCTYPE html>
-<html lang="es">
-  <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>benevolent-moxie-10c349</title>
-      <style>
-                * {
-                              margin: 0;
-                              padding: 0;
-                              box-sizing: border-box;
-                }
+<body class="p-4 md:p-8 flex items-center justify-center min-h-screen">
 
-                body {
-                              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                              background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                              min-height: 100vh;
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                              padding: 20px;
-                }
+    <div class="max-w-md w-full mx-auto transition-all duration-300">
+        <!-- Header Metrickal -->
+        <div class="bg-metrickal text-white p-8 rounded-t-3xl shadow-xl text-center">
+            <div class="mb-2 flex justify-center">
+                <!-- Representación simple del logo 'me' -->
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-metrickal font-black text-xl italic">me</span>
+                </div>
+            </div>
+            <h1 class="text-3xl font-black tracking-tight">Metrickal</h1>
+            <p class="text-xs uppercase tracking-widest opacity-80 mt-1 font-semibold">Calculadora de Rendimiento</p>
+        </div>
 
-                .container {
-                              background: white;
-                              border-radius: 15px;
-                              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-                              padding: 40px;
-                              max-width: 600px;
-                              text-align: center;
-                }
+        <!-- Main Content -->
+        <div class="bg-white p-8 shadow-2xl border-x space-y-8">
+            <div class="space-y-5">
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Cantidad de Llamadas</label>
+                    <input type="number" id="callsCount" placeholder="Ej: 4515" 
+                        class="w-full rounded-xl border-2 border-gray-100 p-4 text-xl font-semibold outline-none focus:border-metrickal transition-colors ring-metrickal" 
+                        oninput="calculateMetrics()">
+                </div>
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Medias Horas Ejecutadas</label>
+                    <input type="number" id="halfHoursCount" placeholder="Ej: 826" 
+                        class="w-full rounded-xl border-2 border-gray-100 p-4 text-xl font-semibold outline-none focus:border-metrickal transition-colors ring-metrickal" 
+                        oninput="calculateMetrics()">
+                </div>
+            </div>
 
-                h1 {
-                              color: #333;
-                              margin-bottom: 20px;
-                              font-size: 2.5em;
-                }
+            <!-- Result Card -->
+            <div class="result-box p-8 rounded-2xl text-center shadow-lg transform hover:scale-[1.02] transition-transform">
+                <p class="text-xs text-gray-400 uppercase font-black tracking-tighter mb-1">Llamadas por Hora Efectiva</p>
+                <p id="ratioDisplay" class="text-6xl font-black text-metrickal tracking-tight">0.00</p>
+                <div class="mt-4 inline-block px-3 py-1 bg-fuchsia-100 rounded-full text-[10px] text-metrickal font-bold uppercase">
+                    Llamadas / (Medias Horas / 2)
+                </div>
+            </div>
 
-                .subtitle {
-                              color: #f5576c;
-                              font-size: 1.2em;
-                              margin-bottom: 30px;
-                }
+            <div class="text-center pt-2">
+                <button onclick="resetMetrics()" class="text-sm text-gray-400 hover:text-metrickal font-bold uppercase tracking-widest transition-colors">
+                    Limpiar Datos
+                </button>
+            </div>
+        </div>
 
-                p {
-                              color: #666;
-                              line-height: 1.8;
-                              margin-bottom: 20px;
-                }
+        <!-- Footer -->
+        <div class="bg-metrickal text-white p-5 rounded-b-3xl text-center shadow-lg">
+            <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Ecoscooting x Metrickal</p>
+        </div>
+    </div>
 
-                .info-box {
-                              background: #f5f5f5;
-                              padding: 20px;
-                              border-radius: 10px;
-                              margin: 20px 0;
-                              border-left: 4px solid #f5576c;
-                }
+    <script>
+        function calculateMetrics() {
+            const calls = parseFloat(document.getElementById('callsCount').value) || 0;
+            const halves = parseFloat(document.getElementById('halfHoursCount').value) || 0;
+            
+            let ratio = 0;
+            if (halves > 0) {
+                // Formula: Llamadas divididas por horas completas (medias horas / 2)
+                const effectiveHours = halves / 2;
+                ratio = calls / effectiveHours;
+            }
+            
+            // Animación sencilla de números
+            document.getElementById('ratioDisplay').innerText = ratio.toFixed(2);
+        }
 
-                .badge {
-                              display: inline-block;
-                              background: #f5576c;
-                              color: white;
-                              padding: 8px 16px;
-                              border-radius: 20px;
-                              margin-top: 20px;
-                              font-weight: bold;
-                }
-            </style>
-  </head>
-  <body>
-        <div class="container">
-                  <h1>🎉 benevolent-moxie-10c349</h1>
-                <p class="subtitle">Proyecto migrado desde Netlify a GitHub</p>p>
-                
-                <div class="info-box">
-                            <h2 style="color: #333; margin-bottom: 15px;">Información del Proyecto</h2>
-                            <p><strong>Nombre Original:</strong> benevolent-moxie-10c349</p>
-                            <p><strong>Plataforma Original:</strong> Netlify</p>
-                            <p><strong>Fecha de Migración:</strong>strong> 18 de Marzo de 2026</p>
-                            <p><strong>Repositorio GitHub:</strong> andsalas-star/benevolent-moxie-10c349</p>
-                </div>div>
-                
-                <p>Este proyecto ha sido exitosamente migrado desde Netlify a GitHub Pages.</p>
-                
-                <span class="badge">✓ Activo</span>span>
-        </div>div>
-  </body>
-</html>html></strong></p></p></strong></strong></p></h1>
-  </body>
-      </style></title>
-  </head>
+        function resetMetrics() {
+            document.getElementById('callsCount').value = '';
+            document.getElementById('halfHoursCount').value = '';
+            document.getElementById('ratioDisplay').innerText = '0.00';
+        }
+    </script>
+</body>
+</html>
